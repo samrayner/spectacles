@@ -1,5 +1,5 @@
 # Create a bookmark with this as the URL:
-# javascript:!function(){var%20e,t,i=function(e,t){return%20function(){return%20e.apply(t,arguments)}};e=function(){function%20e(){this.stylePairWrappers=i(this.stylePairWrappers,this),this.sorter=i(this.sorter,this);var%20e,t,r,s,a,n,l;for(this.pairClass=%22spectacles-pair%22,e=$(%22%23files%22),r=e.find(%22.file%22).sort(this.sorter),e.empty(),n=0,l=r.length;l%3En;n++)s=r[n],t=$(s),this.deletedFile(s)%26%26this.hideDeletedFile(s),e.append(s),a=t.prev(),a.length%26%26this.filePair(a,s)%26%26this.wrapPair(a,s);this.stylePairFiles(),this.stylePairWrappers(),$(window).resize(this.stylePairWrappers)}return%20e.prototype.deletedFile=function(e){var%20t;return%20t=$(e),t.find(%22.diff-deleted%22).length||t.find(%22.file-diff-line%22).text().indexOf(%22+0,0%20%40%40%22)%3E0},e.prototype.hideDeletedFile=function(e){var%20t,i;return%20i=$(e),t=i.find(%22.data%22).add(i.find(%22.image%22)),t.removeClass(%22image%22).addClass(%22data%20empty%22).css(%22background-color%22,%22%23fdd%22).html(%22File%20deleted.%22)},e.prototype.sorter=function(e,t){return%20e=this.filePath(e),t=this.filePath(t),t%3Ee%3F-1:e%3Et%3F1:0},e.prototype.filePath=function(e){var%20t,i;return%20i=$(e).find(%22.meta%22).data(%22path%22).toLowerCase(),t=i.split(/[\\/]/),t[t.length-2]+%22/%22+t[t.length-1]},e.prototype.filePair=function(e,t){return%20e=this.filePath(e).replace(%22_spec%22,%22%22),t=this.filePath(t).replace(%22_spec%22,%22%22),e===t},e.prototype.wrapPair=function(e,t){var%20i;return%20i=$('%3Cdiv%20class=%22'+this.pairClass+'%22%20/%3E'),$(e).before(i),i.append($(e),$(t))},e.prototype.stylePairFiles=function(){return%20$(%22.%22+this.pairClass+%22%20.file%22).css({width:%2249%25%22,%22float%22:%22left%22,margin:%220%200.5%25%22}).find(%22.data%22).css({maxHeight:%22500px%22,overflow:%22auto%22})},e.prototype.stylePairWrappers=function(){var%20e;return%20e=$(%22.site%20.container%22).offset().left,$(%22.%22+this.pairClass).css({margin:%220%20-%22+(e+60)+%22px%2015px%20-%22+e+%22px%22,overflow:%22hidden%22})},e}(),t=new%20e}();
+# javascript:!function(){var%20t,e,r=function(t,e){return%20function(){return%20t.apply(e,arguments)}};t=function(){function%20t(){this.stylePairWrappers=r(this.stylePairWrappers,this),this.sorter=r(this.sorter,this);var%20t,e,i,s,a,n,l;for(this.pairClass=%22spectacles-pair%22,t=$(%22%23files%22),i=t.find(%22.file%22).sort(this.sorter),t.empty(),n=0,l=i.length;l%3En;n++)s=i[n],e=$(s),this.deletedFile(s)%26%26this.hideDeletedFile(s),t.append(s),a=e.prev(),a.length%26%26this.filePair(a,s)%26%26this.wrapPair(a,s);this.stylePairFiles(),this.stylePairWrappers(),$(window).resize(this.stylePairWrappers)}return%20t.prototype.deletedFile=function(t){var%20e;return%20e=$(t),e.find(%22.diff-deleted%22).length||e.find(%22.blob-code-hunk%22).text().indexOf(%22+0,0%20%40%40%22)%3E0},t.prototype.hideDeletedFile=function(t){var%20e,r;return%20r=$(t),e=r.find(%22.data%22),e.addClass(%22data%20empty%22).css(%22background-color%22,%22%23fdd%22).html(%22Deleted%20file%20not%20rendered%22)},t.prototype.sorter=function(t,e){return%20t=this.filePath(t),e=this.filePath(e),e%3Et%3F-1:t%3Ee%3F1:0},t.prototype.filePath=function(t){var%20e,r;return%20r=$(t).find(%22.meta%22).data(%22path%22).toLowerCase(),e=r.split(/[\\/]/),e[e.length-2]+%22/%22+e[e.length-1]},t.prototype.filePair=function(t,e){return%20t=this.filePath(t).replace(%22_spec%22,%22%22),e=this.filePath(e).replace(%22_spec%22,%22%22),t===e},t.prototype.wrapPair=function(t,e){var%20r;return%20r=$('%3Cdiv%20class=%22'+this.pairClass+'%22%20/%3E'),$(t).before(r),r.append($(t),$(e))},t.prototype.stylePairFiles=function(){return%20$(%22.%22+this.pairClass+%22%20.file%22).css({width:%2249%25%22,%22float%22:%22left%22,margin:%220%200.5%25%22}).find(%22.data%22).css({maxHeight:%22500px%22,overflow:%22auto%22})},t.prototype.stylePairWrappers=function(){var%20t;return%20t=$(%22.site%20.container%22).offset().left,$(%22.%22+this.pairClass).css({margin:%220%20-%22+(t+60)+%22px%2015px%20-%22+t+%22px%22,overflow:%22hidden%22})},t}(),e=new%20t}();
 
 class Spectacles
   constructor: ->
@@ -22,16 +22,15 @@ class Spectacles
 
   deletedFile: (file) ->
     $file = $(file)
-    $file.find(".diff-deleted").length || $file.find(".file-diff-line").text().indexOf("+0,0 @@") > 0
+    $file.find(".diff-deleted").length || $file.find(".blob-code-hunk").text().indexOf("+0,0 @@") > 0
 
   hideDeletedFile: (file) ->
     $file = $(file)
-    $contents = $file.find(".data").add($file.find(".image"))
+    $contents = $file.find(".data")
     $contents
-      .removeClass("image")
       .addClass("data empty")
       .css("background-color", "#fdd")
-      .html("File deleted.")
+      .html("Deleted file not rendered")
 
   sorter: (a, b) =>
     a = @filePath(a)
